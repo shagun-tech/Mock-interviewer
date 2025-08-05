@@ -46,8 +46,6 @@ const EmailVerifyContainer = () => {
 
       const response = await axios.post(`${backendURL}/verify-otp`, { otp });
 
-      console.log(response);
-
       if (response?.status === 200) {
         alert("OTP Verified Successfully!");
         getUserData();

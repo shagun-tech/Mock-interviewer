@@ -15,9 +15,7 @@ export default function Interview() {
 
   useEffect(() => {
     async function handleGetInterview() {
-      console.log(mockId);
       const data = await fetchInterview(mockId);
-      console.log(data);
       setInterviewData(data || {});
     }
     if (mockId) handleGetInterview();

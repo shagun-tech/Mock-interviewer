@@ -6,15 +6,18 @@ import { BrowserRouter } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
 import JobProvider from "./context/jobcontext";
 import FeedbackProvider from "./context/feedbackcontext";
+import { QuestionProvider } from "./context/QuestionContext";
 
 createRoot(document.getElementById("root")).render(
   <AppContextProvider>
     <JobProvider>
-      <FeedbackProvider>
-        <BrowserRouter>
+      <QuestionProvider>
+        <FeedbackProvider>
+          <BrowserRouter>
             <App />
-        </BrowserRouter>
-      </FeedbackProvider>
+          </BrowserRouter>
+        </FeedbackProvider>
+      </QuestionProvider>
     </JobProvider>
   </AppContextProvider>
 );

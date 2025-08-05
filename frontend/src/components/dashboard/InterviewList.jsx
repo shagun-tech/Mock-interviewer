@@ -10,7 +10,6 @@ export default function InterviewList() {
 
   const GetInterviewList = async () => {
     const data = await fetchAllInterviews();
-    console.log(data);
     setInterviewList(data || []);
   };
 

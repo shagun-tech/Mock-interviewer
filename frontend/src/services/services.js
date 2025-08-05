@@ -7,7 +7,6 @@ export async function createInterview(formData) {
 
     const response = await axios.post(`${BACKEND_URL}/interviews`, formData);
 
-    console.log("Interview Created:", response.data);
     return response.data;
   } catch (error) {
     console.error(
@@ -19,13 +18,11 @@ export async function createInterview(formData) {
 }
 
 export async function createFeedback(formData) {
-  console.log(formData);
   try {
     axios.defaults.withCredentials = true;
 
     const response = await axios.post(`${BACKEND_URL}/feedbacks`, formData);
 
-    console.log("Feedback Created:", response.data);
     return response.data;
   } catch (error) {
     console.error(
@@ -44,7 +41,6 @@ export async function getFeedbackByMockId(mockId) {
       params: { mockId },
     });
 
-    console.log("Feedback Data:", response.data);
     return response.data;
   } catch (error) {
     console.error(

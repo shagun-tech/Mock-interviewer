@@ -50,7 +50,6 @@ export default function JobProvider({ children }) {
         createdBy: userData?.email,
       };
 
-      console.log(formData);
 
       const data = await createInterview(formData);
 

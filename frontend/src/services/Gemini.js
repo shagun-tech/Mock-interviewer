@@ -1,7 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const apiKey = "AIzaSyAvLzpOpZfNSwkrQ6zrsFL_4woD8SMI6n8";
-console.log(apiKey);
+const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 if (!apiKey) {
   console.error("Google API key is missing!");

@@ -16,7 +16,6 @@ export default function StartInterview() {
 
   const interviewData = jsonResponse;
 
-  console.log(interviewData);
 
   const handleEndInterview = () => {
     localStorage.removeItem("jsonResponse");

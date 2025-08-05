@@ -62,7 +62,6 @@ export default function FeedbackProvider({ children }) {
           let parsedFeedback;
           try {
             parsedFeedback = JSON.parse(answerFeedback?.feedback || "[]");
-            console.log(parsedFeedback);
           } catch {
             parsedFeedback = [answerFeedback?.feedback || ""];
           }

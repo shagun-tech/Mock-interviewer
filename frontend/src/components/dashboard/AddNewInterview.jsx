@@ -15,7 +15,6 @@ export default function AddNewInterview() {
 
     setOpenDialog(false);
     if (result?.success) {
-      console.log(result);
       const mockId = result?.data?.mockId;
       navigate(`/home/interview/${mockId}`);
     } else {

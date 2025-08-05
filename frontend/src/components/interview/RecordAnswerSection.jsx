@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Webcam from "react-webcam";
 import webcamicon from "../../assets/webcam.svg";
 import { Button } from "../ui/button";
 import useSpeechToText from "react-hook-speech-to-text";
 import { Mic, AlertCircle, LoaderCircle } from "lucide-react";
 import { FeedbackContext } from "@/context/feedbackcontext";
+import { QuestionContext } from "@/context/QuestionContext";
 
 function RecordAnswerSection({
   mockInterviewQuestion,
@@ -15,7 +16,6 @@ function RecordAnswerSection({
 }) {
   const {
     error,
-    interimResult,
     isRecording,
     results,
     startSpeechToText,
@@ -28,25 +28,27 @@ function RecordAnswerSection({
   const { jsonFeedback, loading, handleUserAnswer } =
     useContext(FeedbackContext);
 
+  const { markQuestionAsAnswered } = useContext(QuestionContext);
+
   // Append the speech text to the answer
   useEffect(() => {
-    console.log("this is result" + results);
-
     if (results?.length > 0) {
       const newAnswer = results[results.length - 1]?.transcript;
       setUserTranscribedAnswer((prevAns) => prevAns + " " + newAnswer);
     }
   }, [results]);
 
+  // When recording stops, handle answer submission
   useEffect(() => {
     if (!isRecording && userTranscribedAnswer.length > 10) {
       const question = mockInterviewQuestion[activeQuestionIndex]?.question;
       const correctAnswer = mockInterviewQuestion[activeQuestionIndex]?.answer;
 
-      console.log(question);
-      console.log(correctAnswer);
-
       handleUserAnswer(mockId, question, userTranscribedAnswer, correctAnswer);
+
+      // Mark question as answered
+      markQuestionAsAnswered(activeQuestionIndex);
+
       setUserTranscribedAnswer("");
     }
   }, [isRecording]);
@@ -69,9 +71,8 @@ function RecordAnswerSection({
         <div className="error-message flex items-center text-red-600 p-4 mt-5 rounded-md bg-red-100 border border-red-400">
           <AlertCircle className="mr-2" />
           <span>
-            Web Speech API is not supported in Firefox and some other browsers,
-            which lack native support for Speech Recognition. It is supported in
-            Chrome, Edge, and Opera.
+            Web Speech API is not supported in Firefox and some other browsers.
+            Use Chrome, Edge, or Opera.
           </span>
         </div>
       </div>
@@ -104,7 +105,7 @@ function RecordAnswerSection({
             <b>Getting feedback</b>
           </>
         ) : isRecording ? (
-          <span className="text-red-600">
+          <span className="text-red-600 flex items-center gap-1">
             <Mic /> Stop Recording
           </span>
         ) : (

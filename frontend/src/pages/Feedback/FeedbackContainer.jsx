@@ -9,8 +9,6 @@ function FeedbackContainer() {
 
   const { mockId } = useParams();
 
-  console.log({ mockId });
-
   async function handleGetInterview() {
     await getFeedback(mockId);
   }

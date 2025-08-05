@@ -42,10 +42,6 @@ const SignUpContainer = ({ toggleForm }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(name);
-    console.log(email);
-    console.log(password);
-
     if (!name || !email || !password) {
       setFormError("Please fill in all fields.");
       return;
@@ -66,7 +62,6 @@ const SignUpContainer = ({ toggleForm }) => {
         password
       });
 
-      console.log(response);
 
       if (response?.request?.status === 201) {
         alert("User signed up successfully! You can now log in.");

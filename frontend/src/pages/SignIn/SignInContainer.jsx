@@ -42,13 +42,9 @@ const SignInContainer = ({ toggleForm }) => {
       return;
     }
 
-    console.log(email,password);
-
     setLoading(true);
     try {
       const response = await axios.post(`${backendURL}/login`, { email, password });
-
-      console.log(response?.data);
 
       if (response?.request?.status === 200) {
         setIsLoggedIn(true);
