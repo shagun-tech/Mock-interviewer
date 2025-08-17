@@ -16,6 +16,8 @@ export const AppContextProvider = ({ children }) => {
         withCredentials: true,
       });
 
+      console.log(response);
+
       if (response.status === 200) {
         setUserData(response.data);
         setIsLoggedIn(true);

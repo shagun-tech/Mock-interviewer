@@ -22,6 +22,8 @@ export default function Header() {
   const navigate = useNavigate();
   const { userData } = useContext(AppContext);
 
+  console.log(userData);
+
   const [loading, setLoading] = useState(false);
 
   const handleNavigationToEmailVerification = async () => {

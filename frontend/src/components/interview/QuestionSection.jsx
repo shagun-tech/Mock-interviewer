@@ -11,7 +11,8 @@ function QuestionSection({
   userTranscribedAnswer,
   setUserTranscribedAnswer,
 }) {
-  const { questionColor, setQuestionColor } = useContext(QuestionContext);
+  const { questionColor, setQuestionColor, markQuestionAsAnswered } =
+    useContext(QuestionContext);
 
   function textToSpeech(text) {
     if ("speechSynthesis" in window) {
@@ -28,11 +29,24 @@ function QuestionSection({
 
     let colorMap = {};
     mockInterviewQuestion.forEach((_, index) => {
-      colorMap[index] = false;
+      colorMap[index] = false; // all false initially
     });
 
     setQuestionColor(colorMap);
   }, [mockInterviewQuestion]);
+
+  // ✅ Mark question as answered whenever user gives an answer
+  useEffect(() => {
+
+    console.log(userTranscribedAnswer);
+
+    if (userTranscribedAnswer && userTranscribedAnswer.trim() !== "") {
+      markQuestionAsAnswered(activeQuestionIndex);
+    }
+
+    console.log(questionColor[activeQuestionIndex]);
+
+  }, [userTranscribedAnswer, activeQuestionIndex]);
 
   return (
     mockInterviewQuestion &&
@@ -44,8 +58,8 @@ function QuestionSection({
             <h2
               key={index}
               onClick={() => setActiveQuestionIndex(index)}
-              className={`p-2 bg-secondary rounded-full ${
-                questionColor[index] ? "bg-green-500" : "dark:bg-gray-700"
+              className={`p-2 rounded-full ${
+                questionColor[index] ? "bg-green-500" : "bg-secondary dark:bg-gray-700"
               } text-xs md:text-sm text-center cursor-pointer ${
                 activeQuestionIndex === index
                   ? "border dark:border-white border-black font-bold "

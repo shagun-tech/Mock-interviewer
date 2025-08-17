@@ -50,7 +50,7 @@ public class AuthController {
                     .build();
 
             return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,cookie.toString())
-                    .body(new AuthResponse(request.getEmail(),jwtToken));
+                    .body(new AuthResponse(request.getEmail(),jwtToken, appUserDetailsService.loadName(request.getEmail())));
 
         } catch (BadCredentialsException ex) {
             Map<String, Object> error = new HashMap<>();

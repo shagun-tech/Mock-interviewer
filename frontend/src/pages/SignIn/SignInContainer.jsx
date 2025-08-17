@@ -48,6 +48,7 @@ const SignInContainer = ({ toggleForm }) => {
 
       if (response?.request?.status === 200) {
         setIsLoggedIn(true);
+        console.log(response.data);
         setUserData(response.data);
         navigate("/home");
       } else {
