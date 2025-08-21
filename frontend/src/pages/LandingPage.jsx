@@ -47,7 +47,7 @@ function LandingPage() {
 
               <h3 className="mt-2 text-2xl font-semibold text-gray-100">
                 By{" "}
-                <span className="text-blue-400 dark:text-gray-400">Aditya</span>
+                <span className="text-blue-400 dark:text-gray-400">Shagun</span>
               </h3>
 
               <p className="mt-4 text-gray-100">
