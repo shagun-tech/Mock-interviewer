@@ -74,7 +74,5 @@ Install dependencies
 
 
 
-## Authors
 
-- [@misteraddy](https://www.github.com/misteraddy)
 
